@@ -60,7 +60,9 @@
           </v-col>
         </v-row>
       </v-container> -->
+      <HeroSection/>
       <AboutSection/>
+      <TestimonialsSection/>
     </v-content>
 
     <!-- <v-footer
@@ -76,16 +78,20 @@
 
 <script>
 import AboutSection from './components/about-section'
+import HeroSection from './components/hero-section'
+import TestimonialsSection from "./components/testimonials-section"
 
 export default {
   name: 'App',
 
   components: {
+    HeroSection,
     AboutSection,
+    TestimonialsSection,
   },
 
   data: () => ({
-    drawer: false,
+    drawer: true,
   }),
   props: {
     source: String
