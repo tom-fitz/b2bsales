@@ -63,6 +63,8 @@
       <HeroSection/>
       <AboutSection/>
       <TestimonialsSection/>
+      <ContactSection/>
+      <SalesTipsSection/>
     </v-content>
 
     <!-- <v-footer
@@ -80,6 +82,8 @@
 import AboutSection from './components/about-section'
 import HeroSection from './components/hero-section'
 import TestimonialsSection from "./components/testimonials-section"
+import ContactSection from "./components/contact-section"
+import SalesTipsSection from "./components/sales-tips-section"
 
 export default {
   name: 'App',
@@ -88,6 +92,8 @@ export default {
     HeroSection,
     AboutSection,
     TestimonialsSection,
+    ContactSection,
+    SalesTipsSection,
   },
 
   data: () => ({
