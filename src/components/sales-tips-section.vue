@@ -1,6 +1,6 @@
 <template>
-<v-container fluid style="background-color: #FFB74D">
-        <v-row>
+<v-container fluid class="pt-0 pb-0 background-gradient-tips">
+        <v-row class="padding-126">
             <v-col cols="12">
                 <v-row
                 :align="alignment"
@@ -11,7 +11,7 @@
                         :align="alignment"
                         :justify="justify"
                     >
-                        <h2>Sales Tips</h2>
+                        <h1 class="hero-title">Sales Tactics</h1>
                     </v-col>
                 </v-row>
                 <v-row
@@ -38,7 +38,7 @@
                         >
                         <v-tabs
                         v-model="tab"
-                        background-color="primary"
+                        background-color="#993333"
                         dark
                         >
                             <v-tab
@@ -55,8 +55,8 @@
                                 :key="item.tab"
                             >
                                 <v-card flat>
-                                <v-card-title>{{ item.title }}</v-card-title>
-                                <v-card-text>{{ item.content }}</v-card-text>
+                                <v-card-title class="tips-sub-title">{{ item.title }}</v-card-title>
+                                <v-card-text class="tips-text">{{ item.content }}</v-card-text>
                                 <v-card-actions>
                                     <v-btn text>Read More <v-icon>mdi-chevron-right</v-icon></v-btn>
                                 </v-card-actions>
@@ -92,5 +92,25 @@ export default {
     })
 }
 </script>
-<style>
+<style scoped>
+.background-gradient-tips {
+  background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.65), 
+    rgba(255, 255, 255, 0.95)), url("../assets/webb_02.png");
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position:left;
+}
+.tips-sub-title {
+  font-size:2.0em;
+  margin:15px 0px;
+  color: #ad5b5b;
+}
+.tips-text {
+  font-size:1.1em;
+  color: #555555;
+}
+.padding-126 {
+  padding-top: 126px;
+  padding-bottom: 126px;
+}
 </style>

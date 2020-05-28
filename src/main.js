@@ -6,7 +6,9 @@ import Vuelidate from 'vuelidate'
 
 Vue.config.productionTip = false
 
-Vue.use(VueRouter, Vuelidate)
+let VueScrollTo = require('vue-scrollto')
+
+Vue.use(VueRouter, Vuelidate, VueScrollTo)
 
 new Vue({
   vuetify,

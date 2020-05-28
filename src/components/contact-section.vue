@@ -1,7 +1,7 @@
 <template>
-    <v-container fluid>
+    <v-container fluid class="background-image">
         <v-row>
-            <v-col cols="12">
+            <v-col cols="12" class="padding-126">
                 <v-row
                 :align="alignment"
                 :justify="justify"
@@ -30,50 +30,39 @@
                 :align="alignment"
                 :justify="justify"
                 >
-                    <v-col md="8">
+                    <v-col md="4">
                         <v-card
-                        class="ma-3 pa-6"
-                        outlined
+                        class="ma-3 pa-6 contact-form"
+                        dark
+                        color="white"
                         tile
                         >
                         <form>
                             <v-text-field
                             v-model="name"
-                            :error-messages="nameErrors"
                             :counter="30"
                             label="Name"
                             required
-                            @input="$v.name.$touch()"
-                            @blur="$v.name.$touch()"
+                            color="#993333"
+                            light
                             ></v-text-field>
                             <v-text-field
                             v-model="email"
-                            :error-messages="emailErrors"
                             label="E-mail"
+                            color="#993333"
                             required
-                            @input="$v.email.$touch()"
-                            @blur="$v.email.$touch()"
+                            light
                             ></v-text-field>
                             <v-text-field
                             v-model="company"
-                            :error-messages="nameErrors"
                             :counter="30"
                             label="Company Name"
+                            color="#993333"
                             required
-                            @input="$v.name.$touch()"
-                            @blur="$v.name.$touch()"
+                            light
                             ></v-text-field>
-                            <v-select
-                            v-model="select"
-                            :items="items"
-                            :error-messages="selectErrors"
-                            label="Company Type"
-                            required
-                            @change="$v.select.$touch()"
-                            @blur="$v.select.$touch()"
-                            ></v-select>
-                            <v-btn class="mr-4" @click="submit">submit</v-btn>
-                            <v-btn @click="clear">clear</v-btn>
+                            <v-btn tile color="#993333" class="mr-4" @click="submit">submit</v-btn>
+                            <v-btn tile color="#993333" @click="clear">clear</v-btn>
                         </form>
                         </v-card>
                     </v-col>
@@ -92,7 +81,6 @@ export default {
     validations: {
       name: { required, maxLength: maxLength(30) },
       email: { required, email },
-      select: { required },
     },
     data: () => ({
       alignment: 'center',
@@ -100,42 +88,31 @@ export default {
       name: '',
       email: '',
       company: '',
-      select: null,
-      items: [
-        'Start Up',
-        'Scale Up',
-      ]
     }),
 
-    computed: {
-      selectErrors () {
-        const errors = []
-        if (!this.$v.select.$dirty) return errors
-        !this.$v.select.required && errors.push('Item is required')
-        return errors
-      },
-      nameErrors () {
-        const errors = []
-        if (!this.$v.name.$dirty) return errors
-        !this.$v.name.maxLength && errors.push('Name must be at most 30 characters long')
-        !this.$v.name.required && errors.push('Name is required.')
-        return errors
-      },
-      companyNameErrors () {
-        const errors = []
-        if (!this.$v.name.$dirty) return errors
-        !this.$v.name.maxLength && errors.push('Company Name must be at most 30 characters long')
-        !this.$v.name.required && errors.push('Company Name is required.')
-        return errors
-      },
-      emailErrors () {
-        const errors = []
-        if (!this.$v.email.$dirty) return errors
-        !this.$v.email.email && errors.push('Must be valid e-mail')
-        !this.$v.email.required && errors.push('E-mail is required')
-        return errors
-      },
-    },
+    // computed: {
+    //   nameErrors () {
+    //     const errors = []
+    //     if (!this.$v.name.$dirty) return errors
+    //     !this.$v.name.maxLength && errors.push('Name must be at most 30 characters long')
+    //     !this.$v.name.required && errors.push('Name is required.')
+    //     return errors
+    //   },
+    //   companyNameErrors () {
+    //     const errors = []
+    //     if (!this.$v.company.$dirty) return errors
+    //     !this.$v.company.maxLength && errors.push('Company Name must be at most 30 characters long')
+    //     !this.$v.company.required && errors.push('Company Name is required.')
+    //     return errors
+    //   },
+    //   emailErrors () {
+    //     const errors = []
+    //     if (!this.$v.email.$dirty) return errors
+    //     !this.$v.email.email && errors.push('Must be valid e-mail')
+    //     !this.$v.email.required && errors.push('E-mail is required')
+    //     return errors
+    //   },
+    // },
 
     methods: {
       submit () {
@@ -145,11 +122,25 @@ export default {
         this.$v.$reset()
         this.name = ''
         this.email = ''
-        this.select = null
         this.checkbox = false
       },
     },
 }
 </script>
-<style>
+<style scoped>
+.background-image {
+  background: linear-gradient(
+      rgba(153, 0, 0, 0.75), 
+      rgba(255, 102, 102, 0.75)
+    ), url("../assets/b.jpg");
+  background-size: cover;
+  color: white;
+}
+.contact-form {
+  opacity: 0.80;
+}
+.padding-126 {
+  padding-top: 126px;
+  padding-bottom: 126px;
+}
 </style>
