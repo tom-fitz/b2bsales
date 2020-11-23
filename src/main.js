@@ -9,9 +9,8 @@ import VueFire from "vuefire"
 import firebase from "firebase"
 import lineClamp from 'vue-line-clamp'
 import store from "./Store"
-
-require('firebase/firestore')
-require('firebase/auth')
+import 'firebase/firestore'
+import 'firebase/auth'
 
 Vue.config.productionTip = false
 
@@ -36,26 +35,36 @@ const config = {
 
 firebase.initializeApp(config)
 
-firebase.getCurrentUser = () => {
-  return new Promise((resolve, reject) => {
-      const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-          unsubscribe();
-          resolve(user);
-      }, reject);
-  })
-};
+const ref = firebase.storage().ref()
+const storage = firebase.storage()
+const db = firebase.database()
+const auth = firebase.auth()
 
-export const ref = firebase.storage().ref()
+// firebase.getCurrentUser = () => {
+//   return new Promise((resolve, reject) => {
+//       const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+//           console.log("user: ", user)
+//           unsubscribe();
+//           resolve(user);
+//       }, reject);
+//   })
+// };
 
-export const storage = firebase.storage()
+export {
+    ref,
+    storage,
+    db,
+    auth
+}
 
-export const db = firebase.database()
-
-export const auth = firebase.auth()
-
-new Vue({
-  vuetify,
-  render: h => h(App),
-  router,
-  store: store,
-}).$mount('#app')
+let app
+auth.onAuthStateChanged(() => {
+    if(!app) {
+        app = new Vue({
+            vuetify,
+            render: h => h(App),
+            router,
+            store: store,
+        }).$mount('#app')
+    }
+})

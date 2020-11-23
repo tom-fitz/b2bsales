@@ -33,7 +33,7 @@
                     height="95"
                     text
                     class="pa-0 ma-0 custom-btn"
-                    @click="alert('test')"
+                    @click="redirect(n.path)"
                 >
                   <v-card
                       class="ma-4 transparent"
@@ -82,8 +82,8 @@ export default {
         .catch(() => null)
   },
   methods: {
-    alert(){
-      return alert("test")
+    redirect(path){
+      window.location.href = path
     }
   }
 }

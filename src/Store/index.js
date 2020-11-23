@@ -41,6 +41,8 @@ export default new Vuex.Store({
         oneDayCourse: {},
         twoDayCourse: {},
         officeHours: {},
+        privacy: {},
+        terms: {},
         logos: {},
         tips: {},
         error: "",

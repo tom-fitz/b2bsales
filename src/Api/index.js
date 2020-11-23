@@ -114,26 +114,41 @@ const Api = {
                 })
         })
     },
-    getTestimonials: () => {
-        return new Promise((resolve, reject) => {
-            axios.get('https://b2bsales-9a61f.firebaseio.com/testimonials.json')
-                .then(resp => {
-                    let result = resp.data
-                    const parsed = parseResponseKeys(resp.data.list)
-                    parsed.forEach(x => {
-                        const images = ref.child('images')
-                        let image = images.child(x.imageName)
-                        image.getDownloadURL().then((url) => {
-                            x.imageName = url
-                        }).catch(err => reject(err))
-                    })
-                    result.list = parsed
-                    resolve(result)
-                })
-                .catch(err => {
-                    reject(err)
-                })
-        })
+    getTestimonials: async () => {
+        try{
+            const resp = await axios.get('https://b2bsales-9a61f.firebaseio.com/testimonials.json')
+            const parsed = parseResponseKeys(resp.data.list)
+            await parsed.forEach(x => {
+                const images = ref.child('images')
+                let image = images.child(x.imageName)
+                image.getDownloadURL().then((url) => {
+                    x.imageName = url
+                }).catch(err => err)
+            })
+            resp.data.list = parsed
+            return resp.data
+        } catch (err) {
+            throw new Error(err)
+        }
+        // return new Promise((resolve, reject) => {
+        //     axios.get('https://b2bsales-9a61f.firebaseio.com/testimonials.json')
+        //         .then(resp => {
+        //             let result = resp.data
+        //             const parsed = parseResponseKeys(resp.data.list)
+        //             parsed.forEach(x => {
+        //                 const images = ref.child('images')
+        //                 let image = images.child(x.imageName)
+        //                 image.getDownloadURL().then((url) => {
+        //                     x.imageName = url
+        //                 }).catch(err => reject(err))
+        //             })
+        //             result.list = parsed
+        //             resolve(result)
+        //         })
+        //         .catch(err => {
+        //             reject(err)
+        //         })
+        // })
     },
     postNewTestimonial(testimonial) {
         return new Promise((resolve, reject) => {

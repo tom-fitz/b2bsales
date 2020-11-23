@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import firebase from 'firebase'
+import {auth} from '@/main'
 
 import Home from "../Home/Home"
 import Login from "../Admin/login"
@@ -30,10 +30,13 @@ import AdminOneDay from "../Admin/modules/admin-one-day"
 import AdminTwoDay from "../Admin/modules/admin-two-day"
 import AdminOfficeHours from "../Admin/modules/admin-office-hours"
 import AdminLogos from "../Admin/modules/admin-logos"
+import AdminPrivacy from "../Admin/modules/admin-privacy-policy"
+import AdminTerms from "../Admin/modules/admin-terms"
 
 Vue.use(Router)
 
 let router = new Router({
+    mode: 'history',
     routes: [
         {
             path: '/',
@@ -114,6 +117,16 @@ let router = new Router({
           path: '/sales-office-hours',
           name: 'OfficeHours',
           component: OfficeHours
+        },
+        {
+            path: '/privacy-policy',
+            name: 'PrivacyPolicy',
+            component: () => import(/* webpackChunkName: "privacy" */ "../Home/Privacy")
+        },
+        {
+            path: '/terms-of-service',
+            name: 'Terms',
+            component: () => import(/* webpackChunkName: "terms" */ "../Home/Terms")
         },
         {
             path: '/admin',
@@ -232,6 +245,24 @@ let router = new Router({
                         requiresAuth: true,
                         admin: true
                     },
+                },
+                {
+                    path: 'privacy',
+                    name: 'Admin-Privacy',
+                    component: AdminPrivacy,
+                    meta: {
+                        requiresAuth: true,
+                        admin: true
+                    },
+                },
+                {
+                    path: 'terms',
+                    name: 'Admin-Terms',
+                    component: AdminTerms,
+                    meta: {
+                        requiresAuth: true,
+                        admin: true
+                    },
                 }
             ]
         }
@@ -244,10 +275,10 @@ let router = new Router({
     }
 })
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach((to, from, next) => {
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-    if (requiresAuth && !await firebase.getCurrentUser()){
-        next('login');
+    if (requiresAuth && !auth.currentUser){
+        next('/login');
     }else{
         next();
     }

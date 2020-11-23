@@ -128,50 +128,52 @@
 </template>
 
 <script>
-  export default {
-    name: "Admin",
-    props: {
-      source: String,
-    },
-    data: () => ({
-      drawer: null,
-      admins: [
-        ['About', './about'],
-        ['Testimonials', './testimonials'],
-        ['Sales Tips', { name: 'Admin-Sales-Tips'}],
-        ['Founders', './founders'],
-        ['Accelerators', './accelerators'],
-        ['Universities', { name: 'Admin-Universities'}],
-        ['Investors', { name: 'Admin-Investors'} ],
-        ['1-Day Crashcourse', { name: 'Admin-One-Day'} ],
-        ['2 1/2 Day Crashcourse', { name: 'Admin-Two-Day'} ],
-        ['Office Hours', { name: 'Admin-Office-Hours'} ]
-      ],
-      cruds: [
-        ['Logos', { name: 'Admin-Logos'}],
-        ['Contact', '']
-      ],
-    }),
-    created () {
-      this.$vuetify.theme.dark = false
-    },
-    computed: {
-      items: () => {
-        return [
-          {
-            text: "Public", children: {
-              text: "Pages",
-              route: ""
-            }
-          },
-          { text: "About", route: "./about" },
-          { text: "Testimonials", route: "./testimonials" },
-          { text: "Sales Tactics", route: "./sales-tactics" },
-          { text: "Founders", route: "./founders" },
-          { text: "Accelerators", route: "./accelerators" }
-        ];
-      }
+export default {
+  name: "Admin",
+  props: {
+    source: String,
+  },
+  data: () => ({
+    drawer: null,
+    admins: [
+      ['About', './about'],
+      ['Testimonials', './testimonials'],
+      ['Sales Tips', { name: 'Admin-Sales-Tips'}],
+      ['Founders', './founders'],
+      ['Accelerators', './accelerators'],
+      ['Universities', { name: 'Admin-Universities'}],
+      ['Investors', { name: 'Admin-Investors'} ],
+      ['1-Day Crashcourse', { name: 'Admin-One-Day'} ],
+      ['2 1/2 Day Crashcourse', { name: 'Admin-Two-Day'} ],
+      ['Office Hours', { name: 'Admin-Office-Hours'} ]
+    ],
+    cruds: [
+      ['Logos', { name: 'Admin-Logos'}],
+      ['Contact', ''],
+      ['Privacy Policy', { name: 'Admin-Privacy' } ],
+      ['Terms of Service', { name: 'Admin-Terms'} ]
+    ],
+  }),
+  created () {
+    this.$vuetify.theme.dark = false
+  },
+  computed: {
+    items: () => {
+      return [
+        {
+          text: "Public", children: {
+            text: "Pages",
+            route: ""
+          }
+        },
+        { text: "About", route: "./about" },
+        { text: "Testimonials", route: "./testimonials" },
+        { text: "Sales Tactics", route: "./sales-tactics" },
+        { text: "Founders", route: "./founders" },
+        { text: "Accelerators", route: "./accelerators" }
+      ];
     }
   }
+}
 </script>
 

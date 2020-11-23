@@ -52,14 +52,13 @@
     </v-content>
 </template>
 <script>
-// import { firebase } from "firebase/app"
-import { auth } from '../main'
+import { auth } from '@/main'
 export default {
     name: "login",
     data: () => ({
         user: {
-            email: 'test@example.com',
-            password: 'administrator',
+            email: '',
+            password: '',
         },
         options: {
             isLoggingIn: true,
@@ -71,9 +70,8 @@ export default {
     },
     methods: {
         login () {
-            auth.signInWithEmailAndPassword(this.user.email, this.user.password).then((user) => {
+            auth.signInWithEmailAndPassword(this.user.email, this.user.password).then(() => {
                 this.$router.replace('/admin')
-                console.log("user: ", user)
             }).catch((err) => {
                 alert(err.message)
             })

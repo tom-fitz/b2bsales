@@ -156,10 +156,12 @@
             <v-btn
                 text
                 x-small
+                :to="{name: 'PrivacyPolicy'}"
             >Privacy Policy</v-btn> /
             <v-btn
                 text
                 x-small
+                :to="{name: 'Terms'}"
             >Terms of Service</v-btn>
           </p>
         </v-col>

@@ -36,24 +36,11 @@ export default {
 * {
   font-family: "Roboto",sans-serif;
 }
-.background-image-hero {
-  background: linear-gradient(
-      rgba(253, 253, 253, 0.75),
-      rgba(234, 232, 232, 0.75)
-    ), url("../../assets/3.jpg");
-  background-size: cover;
-  color: white;
-}
 .hero-title {
   font-size: 92px;
   line-height: 92px;
   margin: 25px 0px;
   color: #993333;
-}
-.hero-sub-title {
-  font-size:2.5em;
-  margin:25px 0px;
-  color: #ad5b5b;
 }
 .transparent {
   background-color: white!important;
@@ -66,15 +53,5 @@ export default {
   line-height: 28px;
   color: #555555;
   width:800px;
-}
-.padding-126 {
-  padding-top: 126px;
-  padding-bottom: 126px;
-}
-.hero-button {
-  height: 45px !important;
-  padding: 0px 45px !important;
-  font-size: 0.9em !important;
-  opacity: 0.85;
 }
 </style>
