@@ -50,58 +50,65 @@
                 class="trans-form"
             >
               <v-row
-                  align="center"
                   justify="left"
-                  class=""
               >
                 <v-col md="11">
                   <v-card
-                      class="pa-6 contact-form transparent"
+                      class="pa-6 transparent"
                       dark
                       outlined
+                      min-height="400"
                   >
-                    <form>
-                      <v-row>
-                        <v-col cols="10">
-                          <v-text-field
-                              v-model="name"
-                              label="First Name"
-                              required
-                              color="white"
-                              dark
-                          ></v-text-field>
-                          <v-text-field
-                              v-model="email"
-                              label="E-mail"
-                              color="white"
-                              required
-                              dark
-                          ></v-text-field>
-                          <v-text-field
-                              v-model="company"
-                              label="Company Name"
-                              color="white"
-                              required
-                              dark
-                          ></v-text-field>
-                        </v-col>
-                      </v-row>
-                      <p>Tell us more about your sales needs.</p>
-                      <v-textarea
-                          background-color="white"
-                          outlined
-                          label=""
-                      >
-                      </v-textarea>
-                      <v-btn
-                          outlined
-                          color="white"
-                          class="mr-4 mt-4 pa-6 btn-text"
-                          @click="submit"
-                      >
-                        submit
-                      </v-btn>
-                    </form>
+                    <v-slide-y-transition>
+                      <div v-if="loaded">
+                        <v-card-subtitle color="white" style="opacity:1">
+                          <h1>Thank you for connecting. Kent will be in touch shortly.</h1>
+                        </v-card-subtitle>
+                      </div>
+                      <form v-else>
+                        <v-row>
+                          <v-col cols="10">
+                            <v-text-field
+                                v-model="contact.name"
+                                label="First Name"
+                                required
+                                color="white"
+                                dark
+                            ></v-text-field>
+                            <v-text-field
+                                v-model="contact.email"
+                                label="E-mail"
+                                color="white"
+                                required
+                                dark
+                            ></v-text-field>
+                            <v-text-field
+                                v-model="contact.company"
+                                label="Company Name"
+                                color="white"
+                                required
+                                dark
+                            ></v-text-field>
+                            <v-textarea
+                                background-color=""
+                                outlined
+                                v-model="contact.comment"
+                                label="Tell us more about your sales needs."
+                            >
+                            </v-textarea>
+                          </v-col>
+                        </v-row>
+                        <v-btn
+                            outlined
+                            color="white"
+                            class="mr-4 mt-4 pa-6 btn-text"
+                            @click="submit"
+                            :loading="loading"
+                        >
+                          submit
+                        </v-btn>
+                      </form>
+                    </v-slide-y-transition>
                   </v-card>
                 </v-col>
               </v-row>
@@ -124,6 +131,7 @@ import Navigation from "@/Home/components/navigation-section";
 import Footer from "@/Home/components/footer-section";
 import TestimonialsSection from "@/Home/components/testimonials-section";
 import Logos from "@/Home/components/logo-banner-section";
+import {mapState} from "vuex"
 export default {
   name: "contact",
   components: {
@@ -133,29 +141,48 @@ export default {
     Logos,
   },
   mixins: [validationMixin],
-
   validations: {
     name: { required, maxLength: maxLength(30) },
     email: { required, email },
   },
+  computed: {
+    ...mapState({
+      formResponse: ['form'],
+      loaded: ['loaded'],
+      loading: ['loading']
+    })
+  },
   data(){
       return {
-          alignment: 'center',
-          justify: 'center',
+        alignment: 'center',
+        justify: 'center',
+        contact: {
           name: '',
           email: '',
           company: '',
+          comment: ''
+        }
       }
   },
   methods: {
     submit () {
       this.$v.$touch()
+      this.$store.dispatch('postToContactPageList', this.contact)
+      .then(resp => {
+        console.log("vue resp: ", resp)
+      })
+      .catch(err => {
+        console.log("vue err: ", err)
+      })
     },
     clear () {
       this.$v.$reset()
-      this.name = ''
-      this.email = ''
-      this.checkbox = false
+      this.contact = {
+        name: '',
+            email: '',
+            company: '',
+            comment: ''
+      }
     },
   },
 }

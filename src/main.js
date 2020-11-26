@@ -23,14 +23,14 @@ Vue.use(lineClamp, {
 })
 
 const config = {
-  apiKey: "AIzaSyAme7ipXJ2C8_BaoowuC5UtcSANnoBugUE",
-  authDomain: "b2bsales-9a61f.firebaseapp.com",
-  databaseURL: "https://b2bsales-9a61f.firebaseio.com",
-  projectId: "b2bsales-9a61f",
-  storageBucket: "b2bsales-9a61f.appspot.com",
-  messagingSenderId: "771415598179",
-  appId: "1:771415598179:web:791829795053dc6f6d0456",
-  measurementId: "G-LFHDK9VB15"
+  apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+  authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.VUE_APP_FIREBASE_DB_URL,
+  projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.VUE_APP_FIREBASE_APP_ID,
+  measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
 }
 
 firebase.initializeApp(config)

@@ -1,5 +1,6 @@
-import { default as axios } from "axios";
-import { ref, db } from "@/main";
+import {default as axios} from "axios";
+import {db, ref} from "@/main";
+import emailApi from "./sendgrid"
 
 const parseResponseKeys = (obj) => {
     let response = []
@@ -10,17 +11,8 @@ const parseResponseKeys = (obj) => {
     return response
 }
 
-// const fetchImages = (imageName) => {
-//     const images = ref.child('images')
-//     let image = images.child(imageName)
-//     image.getDownloadURL().then((url) => {
-//         return imageName = url
-//     }).catch(err => {
-//         throw new Error(`error fetching images: ${err}`)
-//     })
-// }
-
 const Api = {
+    emailApi,
     getLogos: async () => {
       try {
           const resp = await axios.get("https://b2bsales-9a61f.firebaseio.com/logos.json");

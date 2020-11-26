@@ -26,9 +26,20 @@ const resetMessages = (state) => {
     state.success = ""
 }
 
+const resetFormMessages = (state) => {
+    state.form.success = ""
+    state.form.error = ""
+}
+
 export default new Vuex.Store({
     state: {
+        loading: false,
+        loaded: false,
         about: {},
+        form: {
+            success: "",
+            error: ""
+        },
         testimonials: {
             list: {},
             title: "",
@@ -57,6 +68,24 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        "postToContactPageList" : async (context, contact) => {
+            context.commit('setLoaded', false)
+            context.commit('setLoading', true)
+            try {
+                const resp = await Api.emailApi.postToContactPageList(contact)
+                context.commit(
+                    'successfullFormSubmission',
+                    `Thank you for connecting with us. Kent will be in touch shortly.`
+                )
+                context.commit('setLoading', false)
+                return resp;
+            } catch (err) {
+                context.commit('setError', `error posting contact: ${err}`)
+                context.commit('setLoading', false)
+            }finally{
+                context.commit('setLoaded', true)
+            }
+        },
         "getLogos" : (context) => {
           return new Promise((resolve, reject) => {
               Api.getLogos()
@@ -211,6 +240,16 @@ export default new Vuex.Store({
         }
     },
     mutations: {
+        "setLoaded" : (state, bool) => {
+            state.loaded = bool
+        },
+        "setLoading" : (state, bool) => {
+            state.loading = bool
+        },
+        "successfullFormSubmission" : (state, msg) => {
+            resetFormMessages(state)
+            state.form.success = msg
+        },
         "getLogos" : (state, logos) => {
             state["logos"] = logos
             state["logos"] = Object.assign({}, state["logos"])
