@@ -255,8 +255,6 @@ export default new Vuex.Store({
             state["logos"] = Object.assign({}, state["logos"])
         },
         "updatedLogo" : (state, updatedLogo) => {
-            console.log("id: ", updatedLogo.id)
-            console.log("updatedLogo: ", updatedLogo)
             state.logos[updatedLogo.id] = updatedLogo
             state.logos = Object.assign({},  state.logos)
         },

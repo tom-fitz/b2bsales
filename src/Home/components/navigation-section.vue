@@ -143,12 +143,12 @@
         light
         prominent
         fixed
-        class="app-bar-border ml-12 mr-12"
+        :class="[$vuetify.breakpoint.mdAndUp ? 'ml-12 mr-12' : 'ml-2 mr-2' , 'app-bar-border']"
     >
       <v-avatar
           height="100"
           width="300"
-          class="ml-10"
+          class=""
           style="border-radius:0!important;"
           align="top"
       >
@@ -157,10 +157,10 @@
         <v-spacer></v-spacer>
       <v-icon
           @click.stop="dialog = true"
-          size="55"
+          :size="$vuetify.breakpoint.mdAndUp ? 55 : 35"
           color="black"
           dark
-          class="mr-8 mt-4 pa-4"
+          :class="[$vuetify.breakpoint.mdAndUp ? 'mr-8' : 'mr-2', 'mt-4 pa-4']"
           style="opacity:0.6;border-radius:0 !important;background-color:white;"
       >
         menu

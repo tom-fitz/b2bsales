@@ -24,7 +24,7 @@
 </template>
 <script>
 export default {
-  name: "admin-template-dialog",
+  name: "admin-template-body",
   props: {
     name: String,
   },

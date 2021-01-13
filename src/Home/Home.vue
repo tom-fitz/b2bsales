@@ -1,29 +1,29 @@
 <template>
-    <v-content class="zero-padding ma-0 pa-0">
-      <HeroSection/>
+    <v-content class="d-flex">
+<!--      <HeroSection/>-->
       <WhoWeServeSection/>
-      <TestimonialsSection/>
+<!--      <TestimonialsSection/>-->
       <ProgramsSection/>
-      <LogoBannerSection/>
-      <FooterSection/>
+<!--      <LogoBannerSection/>-->
+<!--      <FooterSection/>-->
     </v-content>
 </template>
 <script>
 import WhoWeServeSection from "./components/who-we-serve-section"
-import HeroSection from './components/hero-section'
-import TestimonialsSection from "./components/testimonials-section"
-import LogoBannerSection from "./components/logo-banner-section"
+// import HeroSection from './components/hero-section'
+// import TestimonialsSection from "./components/testimonials-section"
+// import LogoBannerSection from "./components/logo-banner-section"
 import ProgramsSection from "./components/programs-section"
-import FooterSection from "./components/footer-section"
+// import FooterSection from "./components/footer-section"
 export default {
   name: 'Home',
   components: {
-    HeroSection,
+    // HeroSection,
     WhoWeServeSection,
-    TestimonialsSection,
-    LogoBannerSection,
+    // TestimonialsSection,
+    // LogoBannerSection,
     ProgramsSection,
-    FooterSection,
+    // FooterSection,
   },
 
   data(){
