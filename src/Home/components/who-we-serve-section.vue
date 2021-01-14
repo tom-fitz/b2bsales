@@ -1,7 +1,8 @@
 <template>
   <v-container fluid class="ma-0 pb-0 pt-0">
     <v-row
-        :class="[$vuetify.breakpoint.mdAndUp ? 'ml-12 mb-12' : 'ml-8', 'align-start d-flex fill-height background-image-about']"
+        :class="[$vuetify.breakpoint.mdAndUp ? 'ml-12 mb-12' : 'ml-8',
+        'align-start d-flex fill-height background-image-about']"
         align="stretch"
         justify="center"
     >
@@ -21,7 +22,7 @@
                 tile
             >
               <v-card-title
-                  :class="[$vuetify.breakpoint.mdAndUp ? 'cta-title-md' : 'cta-title-sm', 'title-hover', 'mt-4', 'text-left']"
+                  :class="[$vuetify.breakpoint.mdAndUp ? 'cta-title-md' : 'cta-title-sm', 'title-hover', 'mt-4']"
               >
                 {{ item.title }}
               </v-card-title>
@@ -33,7 +34,7 @@
                   {{ item.text }}
                 </v-card-text>
               </div>
-              <v-actions>
+              <v-card-actions>
                 <v-btn
                     :class="[$vuetify.breakpoint.mdAndUp ? { 'show-btns btn-text-md': hover } : 'btn-text-sm show-btns mb-6',
                     'ml-6', 'pa-6']"
@@ -42,7 +43,7 @@
                 >
                   Read More
                 </v-btn>
-              </v-actions>
+              </v-card-actions>
             </v-card>
           </v-hover>
         </v-col>

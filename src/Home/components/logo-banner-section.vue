@@ -1,15 +1,21 @@
 <template>
   <v-container fluid class="ma-0 pa-0">
-    <div class="">
+    <div>
       <v-row
           justify="center"
           aling="center"
-          class="ml-12 mt-12 mb-12 fill-height"
+          :class="[
+            $vuetify.breakpoint.mdAndUp ? 'ml-12 mt-12 mb-12' : 'ml-0 mt-6',
+            'fill-height'
+        ]"
       >
-        <v-col cols="3" class="">
+        <v-col
+            sm="6"
+            md="3"
+        >
           <v-row
               align="center"
-              justify="end"
+              :justify="$vuetify.breakpoint.mdAndUp ? 'end' : 'center'"
               class="fill-height"
           >
             <v-btn
@@ -19,7 +25,11 @@
             >Clients we serve.</v-btn>
           </v-row>
         </v-col>
-        <v-col cols="9" class="ma-0 pa-0">
+        <v-col
+            sm="6"
+            md="9"
+            class="ma-0 pa-0"
+        >
           <v-sheet
               class="mx-auto pt-5 pb-5 trans"
               max-width="90%"
