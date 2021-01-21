@@ -141,8 +141,13 @@ const Api = {
         //         })
         // })
     },
-    postNewTestimonial(testimonial) {
+    postNewTestimonial(testimonial, file) {
+        console.log("file: ", file)
         return new Promise((resolve, reject) => {
+            ref.child('images/' + file.name).put(file)
+                .then(snapshot => {
+                    console.log("snap: ", snapshot)
+                })
             db.ref().child('testimonials/list').push().set(testimonial)
                 .then(() => {
                     // TODO: update the state with the newly updated image

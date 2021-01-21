@@ -274,13 +274,16 @@ export default {
       this.dialogButtonFunc = this.postNewTestimonial
     },
     postNewTestimonial() {
-      this.$store.dispatch('postNewTestimonial', this.testimonial)
+      this.$store.dispatch('postNewTestimonial', {
+        testimonial: this.testimonial,
+        file: this.file
+      })
       .then(resp => {
         console.log("post new: ", resp);
       })
       .catch(() => null)
 
-      this.saveImage()
+      // this.saveImage()
 
       this.dialog = false
       this.imageExist = false

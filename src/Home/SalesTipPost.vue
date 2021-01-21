@@ -60,27 +60,25 @@
             </v-col>
         </v-row>
         <v-row>
-<!--          <TestimonialsSection/>-->
-<!--          <Logos />-->
+          <TestimonialsSection/>
+          <Logos />
           <FooterSection/>
         </v-row>
     </v-container>
 </template>
 <script>
-// import TestimonialsSection from "../Home/components/testimonials-section"
+import TestimonialsSection from "../Home/components/testimonials-section"
 import FooterSection from "../Home/components/footer-section"
 import Navigation from "../Home/components/navigation-section"
-// import Logos from "../Home/components/logo-banner-section"
-// import mailChimp from "mailchimp-api-v3"
+import Logos from "../Home/components/logo-banner-section"
 
-// const mailChimp = require('mailchimp-api-v3')
 export default {
   name: "sales-tip-post",
   components: {
-    // TestimonialsSection,
+    TestimonialsSection,
     FooterSection,
     Navigation,
-    // Logos,
+    Logos,
   },
   data: () => ({
     alignment: 'center',

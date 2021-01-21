@@ -135,63 +135,15 @@ export default {
           this.items.list.forEach(i => {
             i.date = moment(String(i.date)).format('MM/DD/YYYY')
           })
-
-          console.log("items: ", this.items)
         })
         .catch(() => null)
   },
   data: () => ({
-    salesTips: {
-      title: "B2B Sales Tips.",
-      text: ["<p>One of the biggest challenges facing any startup is landing the first few paying customers. Often with no prior sales experience, most technical founders hack their way into initial sales attempts — missing crucial first customer opportunities and exhausting precious startup time and capital.</p>"]
-    },
     alignment: 'center',
     justify: 'center',
     itemsToShow: 3,
     tab: null,
     panel: [0,1,2,3,4],
-    // items: [
-    //   {
-    //     id: 1,
-    //     title: 'Sale Tip 1 Title',
-    //     date: '01/01/2020',
-    //     subtitle: 'Sales tip subtitle',
-    //     imageUrl: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-    //     content: 'Sales tip content goes here. This can be limited/brief text or display the whole post, up to you. The "tab" can display anything you want, so instead of "One", I was thinking it could display the posts date, but what ever you think will work best. These are very customizable, so you can also bring in pictures, and links and whatever else you see fit.'
-    //   },
-    //   {
-    //     id: 2,
-    //     title: 'Sale Tip 2 Title',
-    //     date: '01/01/2020',
-    //     subtitle: 'Sales tip subtitle',
-    //     imageUrl: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-    //     content: 'Sales tip content goes here. This can be limited/brief text or display the whole post, up to you. The "tab" can display anything you want, so instead of "One", I was thinking it could display the posts date, but what ever you think will work best. These are very customizable, so you can also bring in pictures, and links and whatever else you see fit.'
-    //   },
-    //   {
-    //     id: 3,
-    //     title: 'Sale Tip 3 Title',
-    //     date: '01/01/2020',
-    //     subtitle: 'Sales tip subtitle',
-    //     imageUrl: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-    //     content: 'Sales tip content goes here. This can be limited/brief text or display the whole post, up to you. The "tab" can display anything you want, so instead of "One", I was thinking it could display the posts date, but what ever you think will work best. These are very customizable, so you can also bring in pictures, and links and whatever else you see fit.'
-    //   },
-    //   {
-    //     id: 4,
-    //     title: 'Sale Tip 4 Title',
-    //     date: '01/01/2020',
-    //     subtitle: 'Sales tip subtitle',
-    //     imageUrl: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-    //     content: 'Sales tip content goes here. This can be limited/brief text or display the whole post, up to you. The "tab" can display anything you want, so instead of "One", I was thinking it could display the posts date, but what ever you think will work best. These are very customizable, so you can also bring in pictures, and links and whatever else you see fit.'
-    //   },
-    //   {
-    //     id: 5,
-    //     title: 'Sale Tip 5 Title',
-    //     date: '01/01/2020',
-    //     subtitle: 'Sales tip subtitle',
-    //     imageUrl: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-    //     content: 'Sales tip content goes here. This can be limited/brief text or display the whole post, up to you. The "tab" can display anything you want, so instead of "One", I was thinking it could display the posts date, but what ever you think will work best. These are very customizable, so you can also bring in pictures, and links and whatever else you see fit.'
-    //   },
-    // ],
   }),
   methods: {
       openPost(id){
