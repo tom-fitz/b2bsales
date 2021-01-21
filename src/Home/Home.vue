@@ -1,5 +1,5 @@
 <template>
-    <v-content class="zero-padding ma-0 pa-0">
+    <v-content class="d-flex">
       <HeroSection/>
       <WhoWeServeSection/>
       <TestimonialsSection/>

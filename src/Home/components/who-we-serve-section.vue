@@ -1,6 +1,11 @@
 <template>
-  <v-container fluid>
-    <v-row class="fill-height background-image-about ml-12 mb-12" align="center" justify="center">
+  <v-container fluid class="ma-0 pb-0 pt-0">
+    <v-row
+        :class="[$vuetify.breakpoint.mdAndUp ? 'ml-12 mb-12' : 'ml-8',
+        'align-start d-flex fill-height background-image-about']"
+        align="stretch"
+        justify="center"
+    >
       <template v-for="(item, i) in items">
         <v-col
             :key="i"
@@ -10,31 +15,37 @@
         >
           <v-hover v-slot:default="{ hover }">
             <v-card
-                :class="[{ 'on-hover': hover, 'red-border': i === 1 }, 'ma-0', 'pa-6', 'trans']"
+                :class="[{ 'on-hover': $vuetify.breakpoint.mdAndUp ? hover : false},
+                $vuetify.breakpoint.mdAndUp ? {'white-border-side' : i === 1} : {'white-border-top-bottom' : i === 1},
+                'ma-0 pa-6 trans d-flex flex-column'
+                ]"
                 tile
             >
-              <v-card-title class="">
-                <v-row
-                    class="fill-height flex-column"
-                >
-                  <h2 :class="[{ 'title-hover': hover }, 'mt-4', 'cta-title', 'text-left']">{{ item.title }}</h2>
-
-                  <div style="height:350px;" justify="center">
-                    <p :class="[{ 'show-text': hover }, 'mt-6', 'mb-6', 'pa-6', 'text-display']">
-                      {{ item.text }}
-                    </p>
-                  </div>
-                  <div>
-                    <v-btn
-                        :class="[{ 'show-btns': hover }, 'ml-6', 'pa-6', 'btn-text']"
-                        outlined
-                        :to=" item.route "
-                    >
-                      Read More
-                    </v-btn>
-                  </div>
-                </v-row>
+              <v-card-title
+                  :class="[$vuetify.breakpoint.mdAndUp ? 'cta-title-md' : 'cta-title-sm', 'title-hover', 'mt-4']"
+              >
+                {{ item.title }}
               </v-card-title>
+              <div>
+                <v-card-text
+
+                    :class="[$vuetify.breakpoint.mdAndUp ? { 'show-text text-size-md mt-6 mb-6': hover, 'mt-6 mb-6' : !hover } : 'show-text text-size-sm',
+                      'mt-2 mb-2 pa-6 text-display']"
+                >
+                  {{ item.text }}
+                </v-card-text>
+              </div>
+              <v-spacer></v-spacer>
+              <v-card-actions>
+                <v-btn
+                    :class="[$vuetify.breakpoint.mdAndUp ? { 'show-btns btn-text-md': hover } : 'btn-text-sm show-btns mb-6',
+                    'ml-6', 'pa-6 hide']"
+                    outlined
+                    :to=" item.route "
+                >
+                  Read More
+                </v-btn>
+              </v-card-actions>
             </v-card>
           </v-hover>
         </v-col>
@@ -85,8 +96,15 @@ export default {
   box-shadow: inset 2000px 0 0 0 rgba(0, 25, 51, 0.7) !important;
 }
 
+.hide {
+  color: transparent;
+}
+
 .title-hover {
-  transform: scaleX(1);
+  /*transform: scaleX(1);*/
+  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
 }
 
 .title-hover:after{
@@ -95,6 +113,8 @@ export default {
   border-bottom: solid 3px #019fb6;
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
+  -webkit-transition: transform 250ms ease-in-out;
+  -moz-transition: transform 250ms ease-in-out;
 }
 
 .title-hover.cta-title:after {
@@ -103,13 +123,29 @@ export default {
 
 .text-display{
   color: transparent;
+  font-size: 16px;
+  line-height: 26px;
+  width:75%;
 }
 
 .show-text{
   color: rgba(255, 255, 255, 1) !important;
+}
+
+.text-size-md {
   font-size: 16px;
   line-height: 26px;
+}
+
+.text-size-sm {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.padding-right {
   padding-right: 180px !important;
+  font-size: 16px;
+  line-height: 26px;
 }
 
 .show-btns {
@@ -118,9 +154,15 @@ export default {
   font-weight: 600;
   opacity: 0.9 !important;
 }
-.btn-text {
+.btn-text-md {
   font-size: 20px;
   line-height: 25px;
+  letter-spacing: 4.5px;
+  color: transparent;
+}
+.btn-text-sm {
+  font-size: 16px;
+  line-height: 20px;
   letter-spacing: 4.5px;
   color: transparent;
 }
@@ -133,11 +175,16 @@ export default {
 .trans {
   background-color: transparent!important;
   box-shadow: none !important;
-  height: 600px;
+  height: 100%;
 }
-.red-border {
+.white-border-side {
   border-right:1px solid #D1D0D0 !important;
   border-left:1px solid #D1D0D0 !important;
+  opacity: 0.80;
+}
+.white-border-top-bottom {
+  border-top: 1px solid #D1D0D0 !important;
+  border-bottom: 1px solid #D1D0D0 !important;
   opacity: 0.80;
 }
 .padding-126 {
@@ -145,12 +192,20 @@ export default {
   padding-bottom: 80px;
 }
 
-.cta-title{
+.cta-title-md {
   display: inline-block;
   color: #D1D0D0;
   font-size: 40px;
   line-height:46px;
   padding: 15px 25px;
+}
+
+.cta-title-sm {
+  display: inline-block;
+  color: #D1D0D0;
+  font-size: 28px;
+  line-height: 34px;
+  padding: 5px 25px;
 }
 
 .padding-126 {

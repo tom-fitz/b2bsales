@@ -5,7 +5,6 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'quill/dist/quill.snow.css'
 import router from './Router/index'
 import Vuelidate from 'vuelidate'
-import VueFire from "vuefire"
 import firebase from "firebase"
 import lineClamp from 'vue-line-clamp'
 import store from "./Store"
@@ -16,7 +15,7 @@ Vue.config.productionTip = false
 
 let VueScrollTo = require('vue-scrollto')
 
-Vue.use(Vuelidate, VueScrollTo, VueFire)
+Vue.use(Vuelidate, VueScrollTo)
 
 Vue.use(lineClamp, {
   importCss: true

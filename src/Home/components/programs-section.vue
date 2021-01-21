@@ -1,42 +1,56 @@
 <template>
   <v-container fluid>
-    <v-row class="fill-height background-image-programs ml-12 mb-12" align="center" justify="center">
+    <v-row
+        :class="[$vuetify.breakpoint.mdAndUp ? 'ml-12 mb-12' : 'ml-8',
+        'fill-height background-image-programs']"
+        align="stretch"
+    >
       <template v-for="(item, i) in items">
         <v-col
             :key="i"
             cols="12"
             md="3"
-            class="ma-0 pa-0"
+            :class="[
+                'ma-0 pa-0'
+                ]"
         >
           <v-card
-              :class="[{ 'red-border': i === 1 || i === 2 }, 'ma-0', 'pa-6', 'trans']"
+              :class="[
+              $vuetify.breakpoint.mdAndUp ? {'white-border-side' : i === 1 || i === 2 } : {'white-border-top-bottom' : i === 1 || i === 2 },
+              'ma-0 pa-6 trans d-flex flex-column'
+              ]"
               tile
+              height="100%"
           >
-            <v-card-title class="">
-              <v-row
-                  class="fill-height flex-column"
-              >
-                <div style="height:100px;" justify="center">
-                  <h2 :class="['mt-4', 'cta-title', 'text-left']">{{ item.title }}</h2>
-                </div>
-
-                <div style="height:410px;" justify="center">
-                  <p :class="['mt-6', 'mb-6', 'pa-0', 'show-text']">
-                    {{ item.text }}
-                  </p>
-                </div>
-                <div>
-                  <v-btn
-                      :class="['ml-2', 'pa-6', 'show-btns']"
-                      outlined
-                      color="white"
-                      :to=" item.route "
-                  >
-                    Read More
-                  </v-btn>
-                </div>
-              </v-row>
+            <v-card-title
+                :class="[$vuetify.breakpoint.mdAndUp ? 'cta-title-md' : 'cta-title-sm', 'mt-4', 'text-left']"
+            >
+              {{ item.title }}
             </v-card-title>
+            <div>
+              <v-card-text
+                  :class="[
+                    $vuetify.breakpoint.mdAndUp ? 'text-size-md ': 'text-size-sm',
+                    'mt-2 mb-2 pa-6 text-display'
+                    ]"
+              >
+                {{ item.text }}
+              </v-card-text>
+            </div>
+            <v-spacer></v-spacer>
+            <v-card-actions>
+              <v-btn
+                  :class="[
+                    $vuetify.breakpoint.mdAndUp ? 'btn-text-md' : 'btn-text-sm mb-6',
+                   'ml-4 pa-6'
+                  ]"
+                  outlined
+                  color="#D1D0D0"
+                  :to=" item.route "
+              >
+                Read More
+              </v-btn>
+            </v-card-actions>
           </v-card>
         </v-col>
       </template>
@@ -106,14 +120,39 @@ export default {
 .trans {
   background-color: transparent!important;
   box-shadow: none !important;
-  height: 660px;
+  height: 100%;
 }
 
-.cta-title{
+.text-display {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.text-size-md {
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.text-size-sm {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.cta-title-md {
   display: inline-block;
   color: #D1D0D0;
-  font-size: 40px;
+  /*font-size: 40px;*/
+  font-size: 3.3vmin;
   line-height:46px;
+  padding: 15px 25px;
+  /*min-height: 150px;*/
+}
+
+.cta-title-sm {
+  display: inline-block;
+  color: #D1D0D0;
+  font-size: 28px;
+  line-height: 34px;
+  padding: 5px 25px;
 }
 
 .founder-title{
@@ -145,28 +184,26 @@ export default {
   color: transparent;
 }
 
-.show-title{
-  color: rgba(255, 255, 255, 1) !important;
-}
-
-.show-text{
-  color: rgba(255, 255, 255, 1) !important;
-  font-size: 16px;
-  line-height: 26px;
-  padding-right: 80px !important;
-}
-
-.show-btns {
-  border-color: #993333 !important;
-  color: white !important;
-  font-weight: 600;
-  opacity: 0.9 !important;
-}
-
-.red-border {
+.white-border-side {
   border-right:1px solid #D1D0D0 !important;
   border-left:1px solid #D1D0D0 !important;
   opacity: 0.80;
+}
+.white-border-top-bottom {
+  border-top: 1px solid #D1D0D0 !important;
+  border-bottom: 1px solid #D1D0D0 !important;
+  opacity: 0.80;
+}
+
+.btn-text-md {
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 4.5px;
+}
+.btn-text-sm {
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 4.5px;
 }
 
 .btn-text {

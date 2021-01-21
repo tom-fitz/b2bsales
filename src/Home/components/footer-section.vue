@@ -1,15 +1,29 @@
 <template>
     <v-container fluid class="pb-2">
-      <v-row class="ml-12 red-bg">
+      <v-row :class="[
+          $vuetify.breakpoint.mdAndUp ? 'ml-12' : 'ml-6',
+          'red-bg'
+      ]">
         <v-col
-            cols="7"
-            class="mt-12 ml-12 mb-12"
+            sm="12"
+            md="7"
+            :class="[
+                $vuetify.breakpoint.mdAndUp ? 'ml-12 mb-12' : 'ml-0 mb-6 white-border-sm',
+                'mt-12'
+            ]"
         >
           <v-card
-              outlined
-              class="trans-form"
+              elevation="0"
+              :class="[
+                  $vuetify.breakpoint.mdAndUp ? 'white-border-md' : '',
+                  'trans-form'
+              ]"
           >
-            <h2 class="footer-title ml-8">Subscribe to monthly email sales tips.</h2>
+            <v-card-title :class="[
+                $vuetify.breakpoint.mdAndUp ? 'footer-title-md ml-4' : 'footer-title-sm ml-4'
+            ]">
+              Subscribe to monthly email sales tips.
+            </v-card-title>
             <v-row
                 align="center"
                 justify="left"
@@ -60,23 +74,26 @@
           </v-card>
         </v-col>
         <v-col
-            cols="3"
-            class="mt-12 ml-12 mb-12"
+            sm="12"
+            md="3"
+            :class="[
+                $vuetify.breakpoint.mdAndUp ? 'ml-12 mb-12 mt-12' : 'ml-0 mb-6 mt-0'
+            ]"
         >
           <v-card
               outlined
               class="trans"
-              style="border-right:solid 1px white"
           >
-            <h2 class="footer-title ml-8">Connect with Kent.</h2>
+            <v-card-title :class="[
+                $vuetify.breakpoint.mdAndUp ? 'footer-title-md ml-4' : 'footer-title-sm ml-4'
+            ]">Connect with Kent.</v-card-title>
 
             <v-row
-                align="center"
-                justify="center"
                 class="ml-4 pt-4"
             >
               <v-col
                   cols="2"
+                  width="35"
                   class="pa-0 ma-0"
               >
                 <v-img
@@ -101,31 +118,59 @@
             </v-row>
 
             <v-row
-                class="ml-6 pt-4 pb-0 mb-0"
+                class="ml-4 pt-4"
             >
-              <v-col cols="12">
+              <v-col
+                  cols="2"
+                  width="35"
+                  class="pa-0 ma-0 center"
+              >
+                <v-icon
+                    large
+                    class=""
+                    color="white"
+                >contact_phone</v-icon>
+              </v-col>
+              <v-col
+                  cols="10"
+                  class="pa-0 ma-0"
+              >
                 <v-btn
                     text
                     color="white"
                     class="pa-0 btn-text"
                     @click="submit"
                 >
-                  <v-icon large class="pr-5">contact_phone</v-icon>+1 617.555.5555
+                  +1 617.555.5555
                 </v-btn>
               </v-col>
             </v-row>
 
             <v-row
-                class="ml-6"
+                class="ml-4 pt-4"
             >
-              <v-col cols="12">
+              <v-col
+                  cols="2"
+                  width="35"
+                  class="pa-0 ma-0 center"
+              >
+                <v-icon
+                    class=""
+                    color="white"
+                    size="35"
+                >email</v-icon>
+              </v-col>
+              <v-col
+                  cols="10"
+                  class="pa-0 ma-0"
+              >
                 <v-btn
                     text
                     color="white"
                     class="pa-0 btn-text"
                     @click="submit"
                 >
-                  <v-icon large class="pr-5">email</v-icon>test@test.com
+                  test@test.com
                 </v-btn>
               </v-col>
             </v-row>
@@ -133,26 +178,32 @@
         </v-col>
       </v-row>
       <v-row
-          class="ml-12 mr-12 mt-4 pa-0 bottom-footer"
+          :class="[
+              $vuetify.breakpoint.mdAndUp ? 'ml-12 mr-12' : 'ml-0 mr-0',
+              'mt-4 pa-0'
+          ]"
       >
         <v-col
-            cols="6"
-            aling="left"
-            class="pl-12 pa-0"
+            sm="12"
+            md="6"
+            align="left"
+            class="ma-0 pr-0 pt-0 pb-0 pl-10"
         >
-          <p class="ma-0 pa-0">© Thirteen B, LLC. All Rights Reserved.</p>
+          <p class="llc ma-0 pa-0">© Thirteen B, LLC. All Rights Reserved.</p>
         </v-col>
         <v-col
-            cols="6"
+            sm="12"
+            md="6"
             align="right"
             class="ma-0 pa-0"
         >
-          <p class="ma-0 pa-0">
+          <span v-if="$vuetify.breakpoint.mdAndUp">
             <v-btn
                 text
                 x-small
                 :to="{name: 'Login'}"
             >Admin Login</v-btn> /
+          </span>
             <v-btn
                 text
                 x-small
@@ -163,7 +214,6 @@
                 x-small
                 :to="{name: 'Terms'}"
             >Terms of Service</v-btn>
-          </p>
         </v-col>
       </v-row>
     </v-container>
@@ -198,18 +248,32 @@ export default {
 .red-bg {
   background-color: #993333;
 }
+.llc {
+  font-size: 13px;
+}
+.center {
+  text-align: center !important;
+}
 .trans-form {
   background-color: transparent !important;
-  border-top: none !important;
-  border-bottom: none !important;
-  border-left: none !important;
-  border-right: solid 1px white !important;
   border-radius: 0 !important;
 }
 .trans {
   background-color: transparent !important;
   border: none !important;
   border-radius: 0 !important;
+}
+.white-border-md {
+  border-right:solid 1px white !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+}
+.white-border-sm {
+  border-bottom:solid 1px white !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
 }
 .container {
     width: 100% !important;
@@ -225,9 +289,15 @@ export default {
     color: rgb(255, 158, 158) !important;
 }
 .footer-title {
-  font-size: 50px;
-  line-height: 52px;
   color: white;
+}
+.footer-title-md {
+  font-size: 50px !important;
+  line-height: 52px !important;
+}
+.footer-title-sm {
+  font-size: 28px;
+  line-height: 28px;
 }
 .footer-text {
     padding: 0px 16px !important;

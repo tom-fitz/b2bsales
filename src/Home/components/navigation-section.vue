@@ -15,8 +15,10 @@
             <v-row
                 :align="alignment"
                 :justify="justify"
-                style="height: 350px;"
-                class="pl-12 pr-12"
+                :class="[
+                    $vuetify.breakpoint.mdAndDown ? 'pl-12' : 'header-row mb-8',
+                 'pr-12'
+                ]"
             >
               <v-col
                   cols="6"
@@ -39,100 +41,108 @@
               </v-col>
             </v-row>
             <v-row
+                class="d-flex"
                 :align="alignment"
                 :justify="justify"
             >
-              <v-btn
-                  text
-                  color="white"
-                  class="btn-text"
-                  @click.stop="dialog = false"
-                  to="/home"
-              >
-                HOME
-              </v-btn>
-              <v-btn
-                  text
-                  color="white"
-                  class="btn-text"
-                  @click.stop="dialog = false"
-                  to="/sales-tips"
-              >
-                B2B Sales Tips
-              </v-btn>
+              <v-col align="center" cols="12" md="12" lg="2">
+                <v-btn
+                    text
+                    color="white"
+                    class="btn-text"
+                    @click.stop="dialog = false"
+                    to="/home"
+                >
+                  HOME
+                </v-btn>
+              </v-col>
+              <v-col align="center" cols="12" md="12" lg="2">
+                <v-btn
+                    text
+                    color="white"
+                    class="btn-text"
+                    @click.stop="dialog = false"
+                    to="/sales-tips"
+                >
+                  B2B Sales Tips
+                </v-btn>
+              </v-col>
+              <v-col align="center" cols="12" md="12" lg="2">
+                <v-menu :open-on-hover="$vuetify.breakpoint.mdAndUp" bottom offset-y>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                        text
+                        color="white"
+                        class="btn-text"
+                        v-bind="attrs"
+                        v-on="on"
+                    >
+                      Who We Serve
+                    </v-btn>
+                  </template>
 
-              <v-menu open-on-hover bottom offset-y>
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                      text
-                      color="white"
-                      class="btn-text"
-                      v-bind="attrs"
-                      v-on="on"
-                  >
-                    Who We Serve
-                  </v-btn>
-                </template>
+                  <v-list>
+                    <v-list-item
+                        v-for="(item, index) in foundersItems"
+                        :key="index"
+                        @click.stop="dialog = false"
+                        :to="item.route"
+                    >
+                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
 
-                <v-list>
-                  <v-list-item
-                      v-for="(item, index) in foundersItems"
-                      :key="index"
-                      @click.stop="dialog = false"
-                      :to="item.route"
-                  >
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
+                </v-menu>
+              </v-col>
+              <v-col align="center" cols="12" md="12" lg="2">
+                <v-menu open-on-hover bottom offset-y>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                        text
+                        color="white"
+                        class="btn-text"
+                        v-bind="attrs"
+                        v-on="on"
+                    >
+                      Programs
+                    </v-btn>
+                  </template>
 
-              </v-menu>
+                  <v-list>
+                    <v-list-item
+                        v-for="(item, index) in programsItems"
+                        :key="index"
+                        @click.stop="dialog = false"
+                        :to="item.route"
+                    >
+                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
 
-
-              <v-menu open-on-hover bottom offset-y>
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                      text
-                      color="white"
-                      class="btn-text"
-                      v-bind="attrs"
-                      v-on="on"
-                  >
-                    Programs
-                  </v-btn>
-                </template>
-
-                <v-list>
-                  <v-list-item
-                      v-for="(item, index) in programsItems"
-                      :key="index"
-                      @click.stop="dialog = false"
-                      :to="item.route"
-                  >
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-
-              </v-menu>
-
-              <v-btn
-                  text
-                  color="white"
-                  class="btn-text"
-                  @click.stop="dialog = false"
-                  to="/about"
-              >
-                About
-              </v-btn>
-
-              <v-btn
-                  text
-                  color="white"
-                  class="btn-text"
-                  @click.stop="dialog = false"
-                  to="/contact"
-              >
-                Contact
-              </v-btn>
+                </v-menu>
+              </v-col>
+              <v-col align="center" cols="12" md="12" lg="2">
+                <v-btn
+                    text
+                    color="white"
+                    class="btn-text"
+                    @click.stop="dialog = false"
+                    to="/about"
+                >
+                  About
+                </v-btn>
+              </v-col>
+              <v-col align="center" cols="12" md="12" lg="2">
+                <v-btn
+                    text
+                    color="white"
+                    class="btn-text"
+                    @click.stop="dialog = false"
+                    to="/contact"
+                >
+                  Contact
+                </v-btn>
+              </v-col>
             </v-row>
           </v-col>
         </v-row>
@@ -143,12 +153,12 @@
         light
         prominent
         fixed
-        class="app-bar-border ml-12 mr-12"
+        :class="[$vuetify.breakpoint.mdAndUp ? 'ml-12 mr-12' : 'ml-2 mr-2' , 'app-bar-border']"
     >
       <v-avatar
           height="100"
           width="300"
-          class="ml-10"
+          class=""
           style="border-radius:0!important;"
           align="top"
       >
@@ -157,10 +167,10 @@
         <v-spacer></v-spacer>
       <v-icon
           @click.stop="dialog = true"
-          size="55"
+          :size="$vuetify.breakpoint.mdAndUp ? 55 : 35"
           color="black"
           dark
-          class="mr-8 mt-4 pa-4"
+          :class="[$vuetify.breakpoint.mdAndUp ? 'mr-8' : 'mr-2', 'mt-4 pa-4']"
           style="opacity:0.6;border-radius:0 !important;background-color:white;"
       >
         menu
@@ -241,7 +251,9 @@ export default {
   transform: scaleX(1) !important;
 }
 
-
+.header-row {
+  height: 350px;
+}
 
 .contact-button {
   width:100px !important;

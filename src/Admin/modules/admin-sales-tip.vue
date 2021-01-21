@@ -291,7 +291,7 @@ export default {
         this.dialogBtn = this.postNewSalesTactic
     },
     postNewSalesTactic() {
-      this.newSalesTip.date = new Date().toLocaleDateString()
+      this.newSalesTip.date = new Date()
       this.$store.dispatch('postSalesTip', this.newSalesTip)
       .catch(() => null)
       this.snackbar = true

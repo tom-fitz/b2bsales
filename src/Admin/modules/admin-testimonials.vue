@@ -295,10 +295,12 @@ export default {
       this.imageExist = true
     },
     sendEdits(){
-      this.$store.dispatch("updateTestimonial", this.testimonial)
+      this.editableTest.list[this.testimonial.id] = this.testimonial
+      this.$store.dispatch("updateTestimonial", this.editableTest)
       .then(() => {
         // TODO: delete previous image on update
         this.dialog = false
+        this.introDialog = false
         this.saveImage()
       })
       .catch(() => null)
