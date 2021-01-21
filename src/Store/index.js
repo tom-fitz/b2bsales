@@ -213,10 +213,15 @@ export default new Vuex.Store({
                     })
             })
         },
-        "postNewTestimonial" : (context, testimonial) => {
+        "postNewTestimonial" : (context, {
+            testimonial: testimonial,
+            file: file
+        }) => {
+            console.log("state file:", file)
             return new Promise((resolve, reject) => {
-                Api.postNewTestimonial(testimonial)
+                Api.postNewTestimonial(testimonial, file)
                     .then(resp => {
+                        console.log("state resp: ", resp)
                         context.commit('postNewTestimonial', resp)
                         resolve(resp)
                     })
@@ -227,7 +232,6 @@ export default new Vuex.Store({
             })
         },
         "updateTestimonial" : (context, updatedTestimonialList) => {
-            console.log("testimonial: ", )
             return new Promise((resolve, reject) => {
                 Api.updateTestimonial(updatedTestimonialList)
                     .then(resp => {

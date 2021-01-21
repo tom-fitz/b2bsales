@@ -127,20 +127,6 @@ import {mapState} from "vuex";
 
 export default {
   name: "testimonials-section",
-  data () {
-    return {
-      testimonialList: [],
-      // testimonials: {
-      //   title: "test title",
-      //   text: "test text for offline testing. test text for offline testing. test text for offline testing. test text for offline testing. test text for offline testing. test text for offline testing. test text for offline testing. test text for offline testing. ",
-      //   list: [{
-      //     quote: "test text for offline testing. test text for offline testing. test text for offline testing. test text for offline testing. test text for offline testing. test text for offline testing. test text for offline testing. test text for offline testing. ",
-      //     name: "Test name for mobile testing",
-      //     subHeading: "Test Sub heading. This is an prolonged subheading for mobile testing while offline."
-      //   }],
-      // }
-    }
-  },
   computed: {
     ...mapState({
       testimonials: ['testimonials']
