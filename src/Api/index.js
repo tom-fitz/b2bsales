@@ -145,8 +145,10 @@ const Api = {
         console.log("file: ", file)
         return new Promise((resolve, reject) => {
             ref.child('images/' + file.name).put(file)
-                .then(snapshot => {
-                    console.log("snap: ", snapshot)
+                .then(() => {})
+            ref.child('images/' + file.name).getDownloadURL()
+                .then(resp => {
+                    testimonial.imageName = resp
                 })
             db.ref().child('testimonials/list').push().set(testimonial)
                 .then(() => {
