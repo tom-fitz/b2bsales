@@ -3,7 +3,7 @@
     <v-row
         :class="[$vuetify.breakpoint.mdAndUp ? 'ml-12 mb-12' : 'ml-8',
         'fill-height background-image-programs']"
-        align="start"
+        align="stretch"
     >
       <template v-for="(item, i) in items">
         <v-col
@@ -11,41 +11,39 @@
             cols="12"
             md="3"
             :class="[
-                $vuetify.breakpoint.mdAndUp ? {'white-border-side' : i === 1 || i === 2 } : {'white-border-top-bottom' : i === 1 || i === 2 },
                 'ma-0 pa-0'
                 ]"
-            justify="start"
         >
           <v-card
               :class="[
-
-                'ma-0 pa-6 trans'
-                ]"
+              $vuetify.breakpoint.mdAndUp ? {'white-border-side' : i === 1 || i === 2 } : {'white-border-top-bottom' : i === 1 || i === 2 },
+              'ma-0 pa-6 trans d-flex flex-column'
+              ]"
               tile
+              height="100%"
           >
-            <v-row>
-              <v-card-title
-                  :class="[$vuetify.breakpoint.mdAndUp ? 'cta-title-md' : 'cta-title-sm', 'mt-4', 'text-left']"
-              >
-                {{ item.title }}
-              </v-card-title>
-            </v-row>
+            <v-card-title
+                :class="[$vuetify.breakpoint.mdAndUp ? 'cta-title-md' : 'cta-title-sm', 'mt-4', 'text-left']"
+            >
+              {{ item.title }}
+            </v-card-title>
             <div>
               <v-card-text
                   :class="[
-                      $vuetify.breakpoint.mdAndUp ? 'text-size-md ': 'text-size-sm',
-                      'mt-2 mb-2 pa-6 text-display'
-                      ]"
+                    $vuetify.breakpoint.mdAndUp ? 'text-size-md ': 'text-size-sm',
+                    'mt-2 mb-2 pa-6 text-display'
+                    ]"
               >
                 {{ item.text }}
               </v-card-text>
             </div>
+            <v-spacer></v-spacer>
             <v-card-actions>
               <v-btn
                   :class="[
-                      $vuetify.breakpoint.mdAndUp ? 'btn-text-md' : 'btn-text-sm mb-6',
-                     'ml-4 pa-6'
-                    ]"
+                    $vuetify.breakpoint.mdAndUp ? 'btn-text-md' : 'btn-text-sm mb-6',
+                   'ml-4 pa-6'
+                  ]"
                   outlined
                   color="#D1D0D0"
                   :to=" item.route "
@@ -122,6 +120,7 @@ export default {
 .trans {
   background-color: transparent!important;
   box-shadow: none !important;
+  height: 100%;
 }
 
 .text-display {
@@ -141,7 +140,8 @@ export default {
 .cta-title-md {
   display: inline-block;
   color: #D1D0D0;
-  font-size: 40px;
+  /*font-size: 40px;*/
+  font-size: 3.3vmin;
   line-height:46px;
   padding: 15px 25px;
   /*min-height: 150px;*/

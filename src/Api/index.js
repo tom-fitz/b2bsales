@@ -96,7 +96,6 @@ const Api = {
     },
     updateSalesTip: (updateTip) => {
         return new Promise((resolve, reject) => {
-            console.log("tip: ", updateTip)
             db.ref(`sales-tips/list/${updateTip.id}`).update(updateTip)
                 .then(() => {
                     resolve(updateTip)
@@ -156,10 +155,9 @@ const Api = {
     },
     updateTestimonial: (updateTestimonial) => {
         return new Promise((resolve, reject) => {
-            db.ref(`testimonials/list/${updateTestimonial.id}`).update(updateTestimonial)
-                .then(resp => {
-                    console.log("resp update: ", resp)
-                    resolve(updateTestimonial)
+            db.ref(`testimonials`).set(updateTestimonial)
+                .then(() => {
+                    resolve()
                 })
                 .catch(err => {
                     reject(err)

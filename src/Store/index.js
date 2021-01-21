@@ -226,11 +226,12 @@ export default new Vuex.Store({
                     })
             })
         },
-        "updateTestimonial" : (context, updatedTestimonial) => {
+        "updateTestimonial" : (context, updatedTestimonialList) => {
+            console.log("testimonial: ", )
             return new Promise((resolve, reject) => {
-                Api.updateTestimonial(updatedTestimonial)
+                Api.updateTestimonial(updatedTestimonialList)
                     .then(resp => {
-                        context.commit('updatedTestimonial', updatedTestimonial)
+                        context.commit('updatedTestimonial', updatedTestimonialList)
                         resolve(resp)
                     })
                     .catch(err => {
@@ -309,8 +310,8 @@ export default new Vuex.Store({
             state.success = 'New testimonial successfully posted'
             state.testimonials = Object.assign({}, state.testimonials)
         },
-        "updatedTestimonial" : (state, updatedTestimonial) => {
-            state.testimonials.list[updatedTestimonial.id] = updatedTestimonial
+        "updatedTestimonial" : (state, updated) => {
+            state.testimonials = updated
             state.testimonials = Object.assign({},  state.testimonials)
         },
         "setError" : (state, error) => {

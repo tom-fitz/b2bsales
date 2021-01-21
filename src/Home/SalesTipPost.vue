@@ -15,7 +15,7 @@
                             <v-layout>
                                 <v-flex xs5 lg3>
                                     <v-img
-                                      :src=item.imageUrl
+                                      :src=item.imageName
                                       max-width="400px"
                                       contain
                                     ></v-img>
@@ -30,10 +30,10 @@
                                           {{ item.title }}
                                       </v-card-title>
                                       <v-card-subtitle class="tips-sub-title">
-                                          {{ item.subtitle }}
+                                          {{ item.subTitle }}
                                       </v-card-subtitle>
-                                      <v-card-text class="tips-text pt-0 pb-0">
-                                          {{ item.content }}
+                                      <v-card-text v-html="item.content" class="tips-text pt-0 pb-0">
+<!--                                          {{ item.content }}-->
                                       </v-card-text>
                                       <v-card-text class="tip-date">
                                         Date Posted: {{ item.date }}
@@ -60,49 +60,45 @@
             </v-col>
         </v-row>
         <v-row>
-          <TestimonialsSection/>
-          <Logos />
+<!--          <TestimonialsSection/>-->
+<!--          <Logos />-->
           <FooterSection/>
         </v-row>
     </v-container>
 </template>
 <script>
-import TestimonialsSection from "../Home/components/testimonials-section"
+// import TestimonialsSection from "../Home/components/testimonials-section"
 import FooterSection from "../Home/components/footer-section"
 import Navigation from "../Home/components/navigation-section"
-import Logos from "../Home/components/logo-banner-section"
+// import Logos from "../Home/components/logo-banner-section"
 // import mailChimp from "mailchimp-api-v3"
 
 // const mailChimp = require('mailchimp-api-v3')
 export default {
   name: "sales-tip-post",
   components: {
-    TestimonialsSection,
+    // TestimonialsSection,
     FooterSection,
     Navigation,
-    Logos,
+    // Logos,
   },
   data: () => ({
     alignment: 'center',
     justify: 'center',
     tab: null,
-    item: {
-      id: 1,
-      title: 'Sales Tip 1 Title',
-      date: '01/01/2020',
-      subtitle: 'Sales tip subtitle',
-      imageUrl: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-      content: 'Sales tip content goes here. This can be limited/brief text or display the whole post, up to you. The "tab" can display anything you want, so instead of "One", I was thinking it could display the posts date, but what ever you think will work best. These are very customizable, so you can also bring in pictures, and links and whatever else you see fit. Sales tip content goes here. This can be limited/brief text or display the whole post, up to you. The "tab" can display anything you want, so instead of "One", I was thinking it could display the posts date, but what ever you think will work best. These are very customizable, so you can also bring in pictures, and links and whatever else you see fit. Sales tip content goes here. This can be limited/brief text or display the whole post, up to you. The "tab" can display anything you want, so instead of "One", I was thinking it could display the posts date, but what ever you think will work best. These are very customizable, so you can also bring in pictures, and links and whatever else you see fit.'
-    },
+    item: {}
   }),
   created(){
-    // console.log("chimp: ", mailChimp)
-    // mailChimp.get({
-    //   path: '/list'
-    // }, (err, result) => {
-    //   console.log("result: ", result)
-    //   console.log("err: ", err)
-    // })
+    this.$store.dispatch('getSalesTips')
+    .then((resp) => {
+      const id = this.$route.params.id
+      resp.list.forEach(j => {
+        this.item = j.id === id ? j : ''
+      })
+    })
+    .catch(err => {
+      console.log("err: ", err)
+    })
   }
 }
 </script>
@@ -117,6 +113,7 @@ export default {
 }
 .tips-sub-title {
     font-size: 36px;
+  line-height: 40px;
     margin:15px 0;
     color: #ad5b5b;
 }

@@ -20,7 +20,7 @@
               ]"
           >
             <v-card-title :class="[
-                $vuetify.breakpoint.mdAndUp ? 'footer-title-md ml-8' : 'footer-title-sm ml-4'
+                $vuetify.breakpoint.mdAndUp ? 'footer-title-md ml-4' : 'footer-title-sm ml-4'
             ]">
               Subscribe to monthly email sales tips.
             </v-card-title>
@@ -84,7 +84,9 @@
               outlined
               class="trans"
           >
-            <v-card-title class="footer-title ml-8">Connect with Kent.</v-card-title>
+            <v-card-title :class="[
+                $vuetify.breakpoint.mdAndUp ? 'footer-title-md ml-4' : 'footer-title-sm ml-4'
+            ]">Connect with Kent.</v-card-title>
 
             <v-row
                 class="ml-4 pt-4"
@@ -183,45 +185,36 @@
       >
         <v-col
             sm="12"
-            :align="$vuetify.breakpoint.mdAndUp ? 'left' : 'center'"
-            :class="[
-                $vuetify.breakpoint.mdAndUp ? 'pl-12' : 'pa-0'
-            ]"
+            md="6"
+            align="left"
+            class="ma-0 pr-0 pt-0 pb-0 pl-10"
         >
-          <p class="ma-0 pa-0">© Thirteen B, LLC. All Rights Reserved.</p>
+          <p class="llc ma-0 pa-0">© Thirteen B, LLC. All Rights Reserved.</p>
         </v-col>
         <v-col
             sm="12"
-            :align="$vuetify.breakpoint.mdAndUp ? 'left' : 'center'"
-            :class="[
-                $vuetify.breakpoint.mdAndUp ? 'pl-12' : 'pa-0'
-            ]"
+            md="6"
+            align="right"
+            class="ma-0 pa-0"
         >
-          <p class="ma-0 pa-0">© Thirteen B, LLC. All Rights Reserved.</p>
+          <span v-if="$vuetify.breakpoint.mdAndUp">
+            <v-btn
+                text
+                x-small
+                :to="{name: 'Login'}"
+            >Admin Login</v-btn> /
+          </span>
+            <v-btn
+                text
+                x-small
+                :to="{name: 'PrivacyPolicy'}"
+            >Privacy Policy</v-btn> /
+            <v-btn
+                text
+                x-small
+                :to="{name: 'Terms'}"
+            >Terms of Service</v-btn>
         </v-col>
-<!--        <v-col-->
-<!--            sm="12"-->
-<!--            md="6"-->
-<!--            class="ma-0 pa-0"-->
-<!--        >-->
-<!--          <p class="ma-0 pa-0">-->
-<!--            <v-btn-->
-<!--                text-->
-<!--                x-small-->
-<!--                :to="{name: 'Login'}"-->
-<!--            >Admin Login</v-btn> /-->
-<!--            <v-btn-->
-<!--                text-->
-<!--                x-small-->
-<!--                :to="{name: 'PrivacyPolicy'}"-->
-<!--            >Privacy Policy</v-btn> /-->
-<!--            <v-btn-->
-<!--                text-->
-<!--                x-small-->
-<!--                :to="{name: 'Terms'}"-->
-<!--            >Terms of Service</v-btn>-->
-<!--          </p>-->
-<!--        </v-col>-->
       </v-row>
     </v-container>
 </template>
@@ -254,6 +247,9 @@ export default {
 }
 .red-bg {
   background-color: #993333;
+}
+.llc {
+  font-size: 13px;
 }
 .center {
   text-align: center !important;
@@ -296,8 +292,8 @@ export default {
   color: white;
 }
 .footer-title-md {
-  font-size: 50px;
-  line-height: 52px;
+  font-size: 50px !important;
+  line-height: 52px !important;
 }
 .footer-title-sm {
   font-size: 28px;

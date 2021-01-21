@@ -17,7 +17,7 @@
             <v-card
                 :class="[{ 'on-hover': $vuetify.breakpoint.mdAndUp ? hover : false},
                 $vuetify.breakpoint.mdAndUp ? {'white-border-side' : i === 1} : {'white-border-top-bottom' : i === 1},
-                'ma-0 pa-6 trans'
+                'ma-0 pa-6 trans d-flex flex-column'
                 ]"
                 tile
             >
@@ -28,16 +28,18 @@
               </v-card-title>
               <div>
                 <v-card-text
-                    :class="[$vuetify.breakpoint.mdAndUp ? { 'show-text text-size-md padding-right mt-6 mb-6': hover } : 'show-text text-size-sm',
-                      'mt-2 mb-2', 'pa-6', 'text-display']"
+
+                    :class="[$vuetify.breakpoint.mdAndUp ? { 'show-text text-size-md mt-6 mb-6': hover, 'mt-6 mb-6' : !hover } : 'show-text text-size-sm',
+                      'mt-2 mb-2 pa-6 text-display']"
                 >
                   {{ item.text }}
                 </v-card-text>
               </div>
+              <v-spacer></v-spacer>
               <v-card-actions>
                 <v-btn
                     :class="[$vuetify.breakpoint.mdAndUp ? { 'show-btns btn-text-md': hover } : 'btn-text-sm show-btns mb-6',
-                    'ml-6', 'pa-6']"
+                    'ml-6', 'pa-6 hide']"
                     outlined
                     :to=" item.route "
                 >
@@ -94,6 +96,10 @@ export default {
   box-shadow: inset 2000px 0 0 0 rgba(0, 25, 51, 0.7) !important;
 }
 
+.hide {
+  color: transparent;
+}
+
 .title-hover {
   /*transform: scaleX(1);*/
   transform: translate3d(0,0,0);
@@ -117,6 +123,9 @@ export default {
 
 .text-display{
   color: transparent;
+  font-size: 16px;
+  line-height: 26px;
+  width:75%;
 }
 
 .show-text{
@@ -135,6 +144,8 @@ export default {
 
 .padding-right {
   padding-right: 180px !important;
+  font-size: 16px;
+  line-height: 26px;
 }
 
 .show-btns {
@@ -164,6 +175,7 @@ export default {
 .trans {
   background-color: transparent!important;
   box-shadow: none !important;
+  height: 100%;
 }
 .white-border-side {
   border-right:1px solid #D1D0D0 !important;
