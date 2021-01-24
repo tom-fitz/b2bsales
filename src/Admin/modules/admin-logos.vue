@@ -96,14 +96,10 @@
   </div>
 </template>
 <script>
-// import { quillEditor } from "vue-quill-editor";
 import { ref } from "@/main"
 import { mapState } from "vuex";
 export default {
   name: "admin-logos",
-  components: {
-    // quillEditor
-  },
   data () {
     return {
       dialog: false,

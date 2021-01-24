@@ -2,7 +2,7 @@
   <PageTemplateBody :name="name"></PageTemplateBody>
 </template>
 <script>
-import PageTemplateBody from "../Home/components/page-body"
+import PageTemplateBody from "./components/page-body"
 export default {
   name: "about-page",
   components: {

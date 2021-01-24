@@ -19,9 +19,7 @@ const Api = {
 
           const parsed = parseResponseKeys(resp.data)
           await parsed.forEach(x => {
-              const images = ref.child('logos');
-              let image = images.child(x.imageName)
-              image.getDownloadURL().then((url) => {
+              ref.child(`logos/${x.imageName}`).getDownloadURL().then((url) => {
                   x.imageName = url
               }).catch(err => err)
           })
@@ -31,8 +29,14 @@ const Api = {
           return err
       }
     },
-    postNewLogo(logo) {
+    postNewLogo(logo, file) {
         return new Promise((resolve, reject) => {
+            ref.child(`images/${file.name}`).put(file)
+                .then(() => {})
+            ref.child(`images/${file.name}`).getDownloadURL()
+                .then(resp => {
+                    logo.imageName = resp
+                })
             db.ref().child('logos').push().set(logo)
                 .then(() => {
                     // TODO: update the state with the newly updated image
@@ -46,8 +50,7 @@ const Api = {
     updateLogo: (updateLogo) => {
         return new Promise((resolve, reject) => {
             db.ref(`logos/${updateLogo.id}`).update(updateLogo)
-                .then(resp => {
-                    console.log("resp update: ", resp)
+                .then(() => {
                     resolve(updateLogo)
                 })
                 .catch(err => {
@@ -121,28 +124,8 @@ const Api = {
         } catch (err) {
             throw new Error(err)
         }
-        // return new Promise((resolve, reject) => {
-        //     axios.get('https://b2bsales-9a61f.firebaseio.com/testimonials.json')
-        //         .then(resp => {
-        //             let result = resp.data
-        //             const parsed = parseResponseKeys(resp.data.list)
-        //             parsed.forEach(x => {
-        //                 const images = ref.child('images')
-        //                 let image = images.child(x.imageName)
-        //                 image.getDownloadURL().then((url) => {
-        //                     x.imageName = url
-        //                 }).catch(err => reject(err))
-        //             })
-        //             result.list = parsed
-        //             resolve(result)
-        //         })
-        //         .catch(err => {
-        //             reject(err)
-        //         })
-        // })
     },
     postNewTestimonial(testimonial, file) {
-        console.log("file: ", file)
         return new Promise((resolve, reject) => {
             ref.child('images/' + file.name).put(file)
                 .then(() => {})

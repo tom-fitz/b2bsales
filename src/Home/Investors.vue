@@ -40,10 +40,10 @@
   </v-container>
 </template>
 <script>
-import Footer from "../Home/components/footer-section"
-import Navigation from "../Home/components/navigation-section"
-import TestimonialsSection from "../Home/components/testimonials-section"
-import Logos from "../Home/components/logo-banner-section"
+import Footer from "./modules/footer-section"
+import Navigation from "./modules/navigation-section"
+import TestimonialsSection from "./modules/testimonials-section"
+import Logos from "./modules/logo-banner-section"
 import { mapState } from "vuex";
 export default {
   name: "investors-page",

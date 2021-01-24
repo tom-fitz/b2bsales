@@ -25,9 +25,6 @@
         <v-container fluid class="pa-0 ma-0">
             <v-row>
               <v-col>
-<!--                  <v-flex d-flex class="ml-12 mr-12">-->
-<!--                    <v-layout class="ml-12 mr-12">-->
-<!--                      <v-flex>-->
                 <v-row class="ml-12 mr-12">
                   <v-col
                       justify="center"
@@ -50,9 +47,6 @@
                       </v-card>
                   </v-col>
                 </v-row>
-<!--                      </v-flex>-->
-<!--                    </v-layout>-->
-<!--                  </v-flex>-->
               </v-col>
               <v-col
                   cols="12"
@@ -68,9 +62,9 @@
     </v-container>
 </template>
 <script>
-import FooterSection from "../Home/components/footer-section";
-import Navigation from "../Home/components/navigation-section";
-import Logos from "@/Home/components/logo-banner-section";
+import FooterSection from "./modules/footer-section";
+import Navigation from "./modules/navigation-section";
+import Logos from "@/Home/modules/logo-banner-section";
 import {mapState} from "vuex";
 export default {
   name: "testimonial",
@@ -99,28 +93,6 @@ export default {
         })
         .catch(() => null)
   },
-  // methods: {
-  //   carouselClick(){
-  //     console.log("click... beee boop")
-  //   },
-  //   getTestimonials(){
-  //     this.$http.get('https://b2bsales-9a61f.firebaseio.com/testimonials.json')
-  //     .then(response => {
-  //       let parsed = JSON.parse(JSON.stringify(response.data))
-  //       this.testimonialList = Object.keys(parsed).map(i => parsed[i])
-  //       this.testimonialList.forEach(x => {
-  //         const images = ref.child('images')
-  //         let image = images.child(x.imageName)
-  //         image.getDownloadURL().then((url) => {
-  //           x.imageName = url
-  //         }).catch((err) => alert(err))
-  //       })
-  //     })
-  //     .catch((err) => {
-  //       console.log("err: ", err)
-  //     })
-  //   }
-  // },
 }
 </script>
 <style scoped>

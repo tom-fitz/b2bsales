@@ -203,7 +203,6 @@ export default {
   },
   methods: {
     routeFounders(item){
-      console.log("item: ", item)
       this.$router.push({ name: item.route })
     }
   }
@@ -273,6 +272,7 @@ export default {
   font-size: 30px !important;
   line-height: 40px !important;
   letter-spacing: 4.5px !important;
+  width: 100%;
 }
 .btn-text::before {
   color: transparent !important;
