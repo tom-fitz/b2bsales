@@ -190,10 +190,9 @@ export default {
     },
     saveEdits(){
       this.$store.dispatch('updateSalesTip', this.post)
-      .then(resp => {
+      .then(() => {
         this.dialog = false
         this.snackbar = true
-        console.log("vue resp: ", resp)
       })
       .catch(() => null)
     }

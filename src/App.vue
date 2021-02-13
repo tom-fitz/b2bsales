@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Navigation from "./Home/components/navigation-section"
+import Navigation from "./Home/modules/navigation-section"
 export default {
   name: 'App',
   components: {

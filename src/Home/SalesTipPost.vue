@@ -67,10 +67,10 @@
     </v-container>
 </template>
 <script>
-import TestimonialsSection from "../Home/components/testimonials-section"
-import FooterSection from "../Home/components/footer-section"
-import Navigation from "../Home/components/navigation-section"
-import Logos from "../Home/components/logo-banner-section"
+import TestimonialsSection from "./modules/testimonials-section"
+import FooterSection from "./modules/footer-section"
+import Navigation from "./modules/navigation-section"
+import Logos from "./modules/logo-banner-section"
 
 export default {
   name: "sales-tip-post",

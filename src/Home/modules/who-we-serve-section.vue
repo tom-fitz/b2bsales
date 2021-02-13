@@ -89,11 +89,14 @@ export default {
   font-size: 24px
 }
 .v-card {
-  transition: .4s ease-in-out;
+  /*transition: .4s ease-in-out;*/
 }
 
 .v-card:hover {
-  box-shadow: inset 2000px 0 0 0 rgba(0, 25, 51, 0.7) !important;
+  transition: .5s ease;
+  -webkit-transition: .5s ease;
+  -moz-transition: .5s ease;
+  background-color: rgba(0, 25, 51, 0.7) !important;
 }
 
 .hide {
@@ -101,10 +104,7 @@ export default {
 }
 
 .title-hover {
-  /*transform: scaleX(1);*/
-  transform: translate3d(0,0,0);
-  -webkit-transform: translate3d(0,0,0);
-  -moz-transform: translate3d(0,0,0);
+  will-change: transform, opacity;
 }
 
 .title-hover:after{
@@ -112,13 +112,6 @@ export default {
   content: '';
   border-bottom: solid 3px #019fb6;
   transform: scaleX(0);
-  transition: transform 250ms ease-in-out;
-  -webkit-transition: transform 250ms ease-in-out;
-  -moz-transition: transform 250ms ease-in-out;
-}
-
-.title-hover.cta-title:after {
-  transform-origin:  0% 50%;
 }
 
 .text-display{

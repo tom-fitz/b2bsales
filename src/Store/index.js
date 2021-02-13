@@ -256,8 +256,8 @@ export default new Vuex.Store({
             state.form.success = msg
         },
         "getLogos" : (state, logos) => {
-            state["logos"] = logos
-            state["logos"] = Object.assign({}, state["logos"])
+            state.logos = logos
+            state.logos = Object.assign({}, state.logos)
         },
         "updatedLogo" : (state, updatedLogo) => {
             state.logos[updatedLogo.id] = updatedLogo

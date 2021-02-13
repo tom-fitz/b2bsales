@@ -17,7 +17,6 @@
               <v-card-actions>
                 <v-btn
                     outlined
-                    style=""
                     class="data-button"
                     :href="data.buttonLink"
                     v-if="data.buttonText !== ''"
@@ -38,9 +37,9 @@
   </v-container>
 </template>
 <script>
-import Footer from "@/Home/components/footer-section"
-import TestimonialsSection from "@/Home/components/testimonials-section"
-import Logos from "@/Home/components/logo-banner-section"
+import Footer from "@/Home/modules/footer-section"
+import TestimonialsSection from "@/Home/modules/testimonials-section"
+import Logos from "@/Home/modules/logo-banner-section"
 export default {
   name: "page-template-body",
   components: {
@@ -91,8 +90,8 @@ export default {
 .data-background-image {
   background: rgb(255,255,255);
   background: linear-gradient(90deg, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%), url("../../assets/3_banner.png");
-  background-size: 100%;
+  background-size: cover;
+  background-position: right top;
   background-repeat: no-repeat;
-  -webkit-background-size: 100%;
 }
 </style>

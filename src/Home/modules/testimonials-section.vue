@@ -8,7 +8,7 @@
           height="auto"
           :show-arrows="$vuetify.breakpoint.mdAndUp ? hover : false"
           hide-delimiters
-          :cycle="false"
+          :cycle="!hover"
       >
         <v-carousel-item
             v-for="(t, i) in testimonials.list"
@@ -80,7 +80,12 @@
                           justify="center"
                           align="center"
                       >
-                        <v-col cols="2" v-if="$vuetify.breakpoint.mdAndUp">
+                        <v-col
+                            cols="12"
+                            xs="12"
+                            sm="12"
+                            md="2"
+                        >
                           <v-avatar
                               size="150"
                               class="elevation"
@@ -92,7 +97,10 @@
                           </v-avatar>
                         </v-col>
                         <v-col
-                            cols="8"
+                            cols="10"
+                            xs="10"
+                            sm="10"
+                            md="8"
                             align="left"
                             :class="[
                                 $vuetify.breakpoint.mdAndUp ? 'pl-6' : 'pa-0'

@@ -283,8 +283,6 @@ export default {
       })
       .catch(() => null)
 
-      // this.saveImage()
-
       this.dialog = false
       this.imageExist = false
     },
@@ -307,13 +305,6 @@ export default {
         this.saveImage()
       })
       .catch(() => null)
-    },
-    saveImage(){
-      this.fileRef.put(this.file).then((snapshot) => {
-        console.log("snapshot: ", snapshot)
-      }).catch(err => {
-        console.log("image upload err: ", err)
-      })
     }
   }
 }

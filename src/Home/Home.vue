@@ -9,12 +9,12 @@
     </v-content>
 </template>
 <script>
-import WhoWeServeSection from "./components/who-we-serve-section"
-import HeroSection from './components/hero-section'
-import TestimonialsSection from "./components/testimonials-section"
-import LogoBannerSection from "./components/logo-banner-section"
-import ProgramsSection from "./components/programs-section"
-import FooterSection from "./components/footer-section"
+import WhoWeServeSection from "./modules/who-we-serve-section"
+import HeroSection from './modules/hero-section'
+import TestimonialsSection from "./modules/testimonials-section"
+import LogoBannerSection from "./modules/logo-banner-section"
+import ProgramsSection from "./modules/programs-section"
+import FooterSection from "./modules/footer-section"
 export default {
   name: 'Home',
   components: {

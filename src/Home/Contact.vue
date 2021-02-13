@@ -127,10 +127,10 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, maxLength, email } from 'vuelidate/lib/validators'
-import Navigation from "@/Home/components/navigation-section";
-import Footer from "@/Home/components/footer-section";
-import TestimonialsSection from "@/Home/components/testimonials-section";
-import Logos from "@/Home/components/logo-banner-section";
+import Navigation from "@/Home/modules/navigation-section";
+import Footer from "@/Home/modules/footer-section";
+import TestimonialsSection from "@/Home/modules/testimonials-section";
+import Logos from "@/Home/modules/logo-banner-section";
 import {mapState} from "vuex"
 export default {
   name: "contact",
