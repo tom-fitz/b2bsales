@@ -8,7 +8,7 @@
           height="auto"
           :show-arrows="$vuetify.breakpoint.mdAndUp ? hover : false"
           hide-delimiters
-          :cycle="!hover"
+          cycle="false"
       >
         <v-carousel-item
             v-for="(t, i) in testimonials.list"
